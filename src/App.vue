@@ -19,6 +19,8 @@
       <label for="file" class="input-plus">+</label>
     </ul>
  </div>
+
+
 </template>
 
 <script>
@@ -30,7 +32,8 @@ export default {
   name: 'App',
   data(){
     return {
-      게시물:postdata
+      게시물:postdata,
+      count: 0
     }
   },
   components: {
@@ -38,14 +41,17 @@ export default {
   },
   methods :{
     more(){
-      axios.get('https://codingapple1.github.io/vue/more0.json')
+      // axios.post('URL',{name:"kIM"}).then(성공).catch((실패 err)=>{err은 에러메시지})
+
+      axios.get(`https://codingapple1.github.io/vue/more${this.count}.json`)
       // .then(function(결과){
       //   // 요청 성공시 실행할 코드
       //   console.log(결과.data)
       // })
       .then((결과)=>{ //this의 재정의를 위함
         // 요청 성공시 실행할 코드
-        console.log(결과.data)
+        this.게시물.push(결과.data); // 게시물array에 push로 게시물 추가
+        this.count++;
       })
     }
   }
