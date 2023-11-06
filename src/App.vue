@@ -4,23 +4,30 @@
       <li>Cancel</li>
     </ul>
     <ul class="header-button-right">
-      <li>Next</li>
+      <li v-if="step==1" @click="step++">Next</li>
+      <li v-if="step==2" @click="publish">Next</li>
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <Container :게시물='게시물'/>
+  <Container :게시물='게시물' :step="step" :이미지="이미지" @write="작성글 = $event"/>
   <button @click="more">더보기</button>
   <!-- <div class="sample-box">임시박스</div> -->
 
   <div class="footer">
     <ul class="footer-button-plus">
-      <input type="file" id="file" class="inputfile" />
+      <input type="file"  @change="upload" id="file" class="inputfile" />
       <label for="file" class="input-plus">+</label>
     </ul>
  </div>
 
-
+ <!-- <div v-if="step == 0">내용0</div>
+ <div v-if="step == 1">내용1</div>
+ <div v-if="step == 2">내용2</div>
+ <button @click="step=0">버튼0</button>
+ <button @click="step=1">버튼1</button>
+ <button @click="step=2">버튼2</button> -->
+ <div style="margin-top : 500px"></div>
 </template>
 
 <script>
@@ -33,13 +40,30 @@ export default {
   data(){
     return {
       게시물:postdata,
-      count: 0
+      count: 0,
+      step:0,
+      이미지 : '',
+      작성글: ''
     }
   },
   components: {
     Container : Container,
   },
   methods :{
+    publish(){
+      var 내게시물 = {
+      name: "Kim Hyun",
+      userImage: "https://picsum.photos/100?random=3",
+      postImage: this.이미지,
+      likes: 36,
+      date: "May 15",
+      liked: false,
+      content: this.작성글,
+      filter: "perpetua"
+    };
+      this.게시물.unshift(내게시물);//작성한 글을 맨 앞에 추가
+      this.step = 0;
+    },
     more(){
       // axios.post('URL',{name:"kIM"}).then(성공).catch((실패 err)=>{err은 에러메시지})
 
@@ -53,6 +77,16 @@ export default {
         this.게시물.push(결과.data); // 게시물array에 push로 게시물 추가
         this.count++;
       })
+
+    },
+    upload(e){
+      let 파일 = e.target.files;
+      console.log(파일[0]);
+      console.log(파일[0].type);
+      let url=URL.createObjectURL(파일[0]);
+      console.log(url)
+      this.이미지 =url;
+      this.step++;
     }
   }
 }
