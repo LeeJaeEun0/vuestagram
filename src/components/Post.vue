@@ -4,7 +4,7 @@
       <div class="profile"></div>
       <span class="profile-name">{{게시물.name}}</span>
     </div>
-    <div class="post-body" :style="{backgroundImage : `url(${게시물.postImage})`}"></div>
+    <div :class="게시물.filter" class="post-body" :style="{backgroundImage : `url(${게시물.postImage})`}"></div>
     <div class="post-content">
       <p>{{게시물.likes}}</p>
       <p><strong>{{게시물.name}}</strong> {{게시물.content}}</p>
@@ -15,11 +15,11 @@
 
 <script>
 export default {
-    name : 'ThePost',
-    props :{
+    name : 'ThePost'
+  ,props :{
         게시물:Object
     }
-}
+  }
 </script>
 
 <style>

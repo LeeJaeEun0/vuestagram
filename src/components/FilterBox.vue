@@ -1,5 +1,6 @@
 <template>
-  <div :class="filter + ' filter-item'" :style="`background-image:url(${이미지})`">
+  <div :class="filter + ' filter-item'" :style="`background-image:url(${이미지})`"
+  @click="fire">
       <slot></slot>
     </div> 
 </template>
@@ -10,6 +11,10 @@ export default {
     props:{
       이미지: String,
       filter: String
+    },methods: {
+      fire(){
+        this.emitter.emit('filter',this.filter)
+      }
     }
 }
 </script>

@@ -43,8 +43,14 @@ export default {
       count: 0,
       step:0,
       이미지 : '',
-      작성글: ''
+      작성글: '',
+      filter:''
     }
+  },mounted(){
+    this.emitter.on('filter', (a)=>{
+      console.log(a)
+      this.filter=a
+    })
   },
   components: {
     Container : Container,
@@ -59,7 +65,7 @@ export default {
       date: "May 15",
       liked: false,
       content: this.작성글,
-      filter: "perpetua"
+      filter: this.filter
     };
       this.게시물.unshift(내게시물);//작성한 글을 맨 앞에 추가
       this.step = 0;
