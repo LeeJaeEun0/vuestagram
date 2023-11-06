@@ -7,12 +7,9 @@
     <div v-if="step == 1">
       <div class="upload-image" :style="`background-image:url(${이미지})`" ></div>
       <div class="filters" >
-        
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
+        <FilterBox :이미지="이미지" :filter="filter" v-for="filter in 필터들" :key="filter">
+            <span>{{filter}}</span>
+        </FilterBox>
       </div>
     </div>
 
@@ -28,12 +25,19 @@
 
 <script>
 import Post from "./Post.vue";
-
+import FilterBox from  './FilterBox.vue'
 export default {
   name: "TheContainer",
+  data(){
+    return {
+        필터들 : [ "aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson", 
+"inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua", 
+"reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"]
+    }
+  },
   components: {
     Post: Post,
-    
+    FilterBox : FilterBox
   },
   props: {
     게시물: Array,
