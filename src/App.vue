@@ -9,7 +9,9 @@
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
-
+  <h4>안녕 {{$store.state.name}}</h4>
+  <button @click="$store.state.name= '받'"></button>
+  
   <Container :게시물='게시물' :step="step" :이미지="이미지" @write="작성글 = $event"/>
   <button @click="more">더보기</button>
   <!-- <div class="sample-box">임시박스</div> -->
@@ -34,6 +36,7 @@
 import Container from './components/Container.vue';
 import postdata from './assets/postdata.js'
 import axios from 'axios';
+
 
 export default {
   name: 'App',
