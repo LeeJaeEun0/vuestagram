@@ -10,7 +10,7 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
   <h4>안녕 {{$store.state.name}}</h4>
-  <button @click="$store.state.name= '받'"></button>
+  <button @click="$store.state.name= '박'"></button>
   
   <Container :게시물='게시물' :step="step" :이미지="이미지" @write="작성글 = $event"/>
   <button @click="more">더보기</button>
