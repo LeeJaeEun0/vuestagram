@@ -12,15 +12,20 @@
   <h4>안녕 {{$store.state.name}}</h4>
   <button @click="$store.commit('이름변경')">이름변경</button>
   <!-- <h4>안녕 {{$store.state.age}}</h4>
-  <button @click="$store.commit('나이변경')"></button>
+  <button @click="$store.commit('나이변경')"></button> -->
   <h4>안녕 {{$store.state.age}}</h4>
-  <button @click="$store.commit('나이변경2',10)"></button> -->
+  <button @click="나이변경(10)"></button>
   <p>{{$store.state.more}}</p>
   <button @click="$store.dispatch('getData')">더보기 버튼</button>
-
+  <p>{{name}} {{age}} {{likes}}</p>
+  <p>{{내이름}}</p>
   <Container :게시물='게시물' :step="step" :이미지="이미지" @write="작성글 = $event"/>
   <!-- <button @click="more">더보기</button> -->
   <!-- <div class="sample-box">임시박스</div> -->
+  <p>{{now()}} {{카운터}}</p>
+  <button @click="카운터++"></button>
+  <p>{{now2}} {{카운터2}}</p>
+  <button @click="카운터2++"></button>
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -42,6 +47,7 @@
 import Container from './components/Container.vue';
 import postdata from './assets/postdata.js'
 import axios from 'axios';
+import { mapMutations, mapState } from 'vuex';
 
 
 export default {
@@ -53,7 +59,9 @@ export default {
       step:0,
       이미지 : '',
       작성글: '',
-      filter:''
+      filter:'',
+      카운터 : 0,
+      카운터2 : 0
     }
   },mounted(){
     this.emitter.on('filter', (a)=>{
@@ -64,7 +72,23 @@ export default {
   components: {
     Container : Container,
   },
-  methods :{
+  computed:{ //return을 필수로 사용
+    now2(){ // 페이지를 처음 로드될때 한번만 실행
+      return new Date()
+    },
+    name(){
+      return this.$store.state.name
+    },
+    ...mapState(['name','age','likes']), // 위의 것 축약
+    ...mapState({내이름: 'name'}), // 위의 것 축약
+  
+  }
+  ,
+  methods :{ // 사용할때마다 실행
+    ...mapMutations(['setMore', '좋아요', '나이변경2']),
+    now(){ // 현재시간 출력하는 함수
+      return new Date()
+    },
     publish(){
       var 내게시물 = {
       name: "Kim Hyun",
