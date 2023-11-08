@@ -10,8 +10,11 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
   <h4>안녕 {{$store.state.name}}</h4>
-  <button @click="$store.state.name= '박'"></button>
-  
+  <button @click="$store.commit('이름변경')"></button>
+  <h4>안녕 {{$store.state.age}}</h4>
+  <button @click="$store.commit('나이변경')"></button>
+  <h4>안녕 {{$store.state.age}}</h4>
+  <button @click="$store.commit('나이변경2',10)"></button>
   <Container :게시물='게시물' :step="step" :이미지="이미지" @write="작성글 = $event"/>
   <button @click="more">더보기</button>
   <!-- <div class="sample-box">임시박스</div> -->

@@ -4,9 +4,10 @@
       <div class="profile"></div>
       <span class="profile-name">{{게시물.name}}</span>
     </div>
-    <div :class="게시물.filter" class="post-body" :style="{backgroundImage : `url(${게시물.postImage})`}"></div>
+    <div :class="게시물.filter" class="post-body" :style="{backgroundImage : `url(${게시물.postImage})`}"
+    @click="$store.commit('좋아요')"></div>
     <div class="post-content">
-      <p>{{게시물.likes}}</p>
+      <p>{{$store.state.likes}} Likes</p>
       <p><strong>{{게시물.name}}</strong> {{게시물.content}}</p>
       <p class="date">{{게시물.date}}</p>
     </div>
