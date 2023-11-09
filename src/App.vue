@@ -14,7 +14,9 @@
   <!-- <h4>안녕 {{$store.state.age}}</h4>
   <button @click="$store.commit('나이변경')"></button> -->
   <h4>안녕 {{$store.state.age}}</h4>
-  <button @click="나이변경(10)"></button>
+  <button @click="$store.commit('나이변경2',10)"></button>
+  <h4>안녕 {{$store.state.age}}</h4>
+  <button @click="나이변경2(10)"></button>
   <p>{{$store.state.more}}</p>
   <button @click="$store.dispatch('getData')">더보기 버튼</button>
   <p>{{name}} {{age}} {{likes}}</p>
