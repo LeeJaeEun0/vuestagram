@@ -4,7 +4,7 @@ module.exports = defineConfig({
 })
 module.exports = {
   pwa: {
-    name: '님 앱이름',
+    name: 'vue',
     themeColor: '#4DBA87',
     msTileColor: '#000000',
     workboxOptions: {

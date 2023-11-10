@@ -58,7 +58,7 @@ export default {
     return {
       게시물:postdata,
       count: 0,
-      step:0,
+      step:3,
       이미지 : '',
       작성글: '',
       filter:'',

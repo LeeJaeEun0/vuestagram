@@ -21,11 +21,17 @@
     </div>
     </div>
   </div>
+
+  <!-- 마이페이지 -->
+  <div v-if="step ==3">
+    <MyPage/>
+  </div>
 </template>
 
 <script>
 import Post from "./Post.vue";
 import FilterBox from  './FilterBox.vue'
+import MyPage from './MyPage.vue'
 export default {
   name: "TheContainer",
   data(){
@@ -38,7 +44,8 @@ export default {
   },
   components: {
     Post: Post,
-    FilterBox : FilterBox
+    FilterBox : FilterBox,
+    MyPage:MyPage
   },mounted(){
     this.emitter.on('filter', (a)=>{
       this.filter=a
